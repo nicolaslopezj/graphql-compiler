@@ -1,12 +1,12 @@
 # GraphQL Compiler
 
-Compiles ```.graphql``` in Meteor.
+Compiles ```.graphql``` files in Meteor.
 
-```
+```sh
 meteor add orionsoft:graphql-compiler
 ```
 
-```Query.graphql```
+In ```Query.graphql```:
 
 ```graphql
 type Query {
@@ -14,16 +14,19 @@ type Query {
 }
 ```
 
-```index.js```
+In ```index.js```:
+
 ```js
 import Query from './Query.graphql'
 
 console.log(Query)
 ```
+
+Log ```index.js```:
 ```
 type Query {
   items: [Item]
 }
 ```
 
-So you can write your graphql schema in ```.graphql``` files and them import them as Strings.
+So now you can write your graphql schema in ```.graphql``` files and them import them as Strings.
