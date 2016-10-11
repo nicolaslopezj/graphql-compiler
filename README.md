@@ -7,7 +7,8 @@ meteor add orionsoft:graphql-compiler
 ```
 
 ```Query.graphql```
-```
+
+```graphql
 type Query {
   items: [Item]
 }
