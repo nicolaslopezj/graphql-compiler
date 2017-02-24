@@ -57,5 +57,5 @@ class GraphQLCompiler extends CachingCompiler {
 }
 
 Plugin.registerCompiler({
-  extensions: ['graphql']
+  extensions: ['graphql', 'graphqls']
 }, () => new GraphQLCompiler())
