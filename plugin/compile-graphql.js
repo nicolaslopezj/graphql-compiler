@@ -1,13 +1,12 @@
 class GraphQLCompiler extends CachingCompiler {
-
-  constructor () {
+  constructor() {
     super({
       compilerName: 'graphqlcompiler',
       defaultCacheSize: 1024 * 1024 * 10
     })
   }
 
-  getCompileOptions (file) {
+  getCompileOptions(file) {
     return {
       filename: file.getPathInPackage(),
       generatedFile: '/' + this.outputFilePath(file),
@@ -15,25 +14,22 @@ class GraphQLCompiler extends CachingCompiler {
     }
   }
 
-  outputFilePath (file) {
+  outputFilePath(file) {
     return file.getPathInPackage()
   }
 
-  getCacheKey (file) {
-    return [
-      file.getSourceHash(),
-      file.getDeclaredExports(),
-      this.getCompileOptions(file)
-    ]
+  getCacheKey(file) {
+    return [file.getSourceHash(), file.getDeclaredExports(), this.getCompileOptions(file)]
   }
 
-  getFileOutput (content) {
-    const compiled = content.replace(/\n/g, '\\n')
+  getFileOutput(content) {
+    const compiled = content.replace(/\n/g, '\\n').replace(/"/g, '\\"')
     const output = `module.export("default",exports.default=("${compiled}"));`
+    console.log(output)
     return output
   }
 
-  compileOneFile (inputFile) {
+  compileOneFile(inputFile) {
     const output = this.getFileOutput(inputFile.getContentsAsString())
     return {
       sourcePath: inputFile.getPathInPackage(),
@@ -43,7 +39,7 @@ class GraphQLCompiler extends CachingCompiler {
     }
   }
 
-  addCompileResult (inputFile, sourceWithMap) {
+  addCompileResult(inputFile, sourceWithMap) {
     inputFile.addJavaScript({
       path: this.outputFilePath(inputFile),
       sourcePath: inputFile.getPathInPackage(),
@@ -51,11 +47,14 @@ class GraphQLCompiler extends CachingCompiler {
     })
   }
 
-  compileResultSize (compileResult) {
+  compileResultSize(compileResult) {
     return compileResult.data.length
   }
 }
 
-Plugin.registerCompiler({
-  extensions: ['graphql', 'graphqls']
-}, () => new GraphQLCompiler())
+Plugin.registerCompiler(
+  {
+    extensions: ['graphql', 'graphqls']
+  },
+  () => new GraphQLCompiler()
+)
