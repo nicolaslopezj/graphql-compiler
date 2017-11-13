@@ -1,7 +1,7 @@
 Package.describe({
   name: 'orionsoft:graphql-compiler',
   summary: 'Write graphql in .graphql files',
-  version: '0.0.2',
+  version: '0.0.3',
   git: 'https://github.com/orionsoft/graphql-compiler'
 })
 
@@ -14,10 +14,10 @@ Package.registerBuildPlugin({
   }
 })
 
-Package.onUse(function (api) {
+Package.onUse(function(api) {
   api.use('isobuild:compiler-plugin@1.0.0')
 })
 
-Package.onTest(function (api) {
+Package.onTest(function(api) {
   api.use('orionsoft:graphql-compiler')
 })
