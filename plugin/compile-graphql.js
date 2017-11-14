@@ -25,7 +25,6 @@ class GraphQLCompiler extends CachingCompiler {
   getFileOutput(content) {
     const compiled = content.replace(/\n/g, '\\n').replace(/"/g, '\\"')
     const output = `module.export("default",exports.default=("${compiled}"));`
-    console.log(output)
     return output
   }
 

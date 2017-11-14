@@ -1,7 +1,7 @@
 Package.describe({
   name: 'orionsoft:graphql-compiler',
   summary: 'Write graphql in .graphql files',
-  version: '0.0.3',
+  version: '0.0.4',
   git: 'https://github.com/orionsoft/graphql-compiler'
 })
 
